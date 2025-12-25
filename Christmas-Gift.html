@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Merry Christmas ❄️</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(180deg, #0f2a1d, #123c2a);
+      color: #fffaf0;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.6em;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-style: italic;
+      opacity: 0.9;
+      margin-bottom: 45px;
+      color: #f1f1f1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.45em;
+      color: #ffdddd;
+    }
+
+    .snow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(white 1.2px, transparent 1.2px),
+        radial-gradient(white 1px, transparent 1px);
+      background-size: 4px 4px, 6px 6px;
+      opacity: 0.2;
+      animation: snow 25s linear infinite;
+    }
+
+    @keyframes snow {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 0 1200px, 0 800px; }
+    }
+
+    button {
+      background: #ffefef;
+      color: #7a1f1f;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #hiddenMessage {
+      display: none;
+      margin-top: 15px;
+      font-style: italic;
+      color: #fff3f3;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 45px;
+      font-size: 0.9em;
+      opacity: 0.85;
+      color: #f5f5f5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="snow"></div>
+
+  <div class="container">
+    <h1>🎄 Merry Christmas 🎄</h1>
+    <div class="subtitle">
+      for a friend who makes winter feel warmer
+    </div>
+
+    <div class="card">
+      <h2>📖 If this were a Christmas book</h2>
+      <p>
+        This would be the chapter read under soft lights,
+        where the world slows down, pages turn gently,
+        and friendship feels like home.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🎧 Songs for cold nights</h2>
+      <p>
+        The kind of music you play when the room is quiet,
+        the weather is cold,
+        and you don’t feel alone.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>❄️ A small winter secret</h2>
+      <button onclick="reveal()">Click me</button>
+      <div id="hiddenMessage">
+        Some people feel like Christmas —
+        calm, kind, and remembered long after winter ends.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>✍️ A poem for you</h2>
+      <p>
+        (Your poem will live here —
+        like a note tucked inside a favorite book.)
+      </p>
+    </div>
+
+    <div class="footer">
+      Made with friendship ❄️🎄
+    </div>
+  </div>
+
+  <script>
+    function reveal() {
+      document.getElementById("hiddenMessage").style.display = "block";
+    }
+  </script>
+</body>
+</html>
