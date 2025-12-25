@@ -1,158 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Merry Christmas ❄️</title>
+<meta charset="UTF-8">
+<title>Merry Christmas ❄️</title>
+<style>
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #fff3e6;
+  position: relative;
+  background: linear-gradient(to bottom, #0f2a1d 0%, #123c2a 50%, #1a4b2c 100%);
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(180deg, #0f2a1d, #123c2a);
-      color: #fffaf0;
-      min-height: 100vh;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 0;
+}
 
-    .container {
-      max-width: 720px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(255,255,255,0.05), transparent 80%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.05), transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+}
 
-    h1 {
-      text-align: center;
-      font-size: 2.6em;
-      margin-bottom: 10px;
-      color: #fff;
-    }
+.container {
+  max-width: 720px;
+  margin: auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 2;
+}
 
-    .subtitle {
-      text-align: center;
-      font-style: italic;
-      opacity: 0.9;
-      margin-bottom: 45px;
-      color: #f1f1f1;
-    }
+h1 {
+  text-align: center;
+  font-size: 2.6em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 8px #00000044;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 18px;
-      padding: 28px;
-      margin-bottom: 28px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
+.subtitle {
+  text-align: center;
+  font-style: italic;
+  opacity: 0.9;
+  margin-bottom: 35px;
+}
 
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.45em;
-      color: #ffdddd;
-    }
+.card {
+  background: rgba(255, 240, 230, 0.1);
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+  transition: transform 0.3s ease;
+}
 
-    .snow {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
-      background-image:
-        radial-gradient(white 1.2px, transparent 1.2px),
-        radial-gradient(white 1px, transparent 1px);
-      background-size: 4px 4px, 6px 6px;
-      opacity: 0.2;
-      animation: snow 25s linear infinite;
-    }
+.card:hover { transform: scale(1.02); }
+.card h2 { margin-top: 0; color: #ffd1d1; }
 
-    @keyframes snow {
-      from { background-position: 0 0, 0 0; }
-      to { background-position: 0 1200px, 0 800px; }
-    }
+button {
+  background: #ffe6e6;
+  color: #7a1f1f;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 3px;
+}
 
-    button {
-      background: #ffefef;
-      color: #7a1f1f;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 0.95em;
-    }
+#quizAnswer, #countdown {
+  margin-top: 15px;
+  font-style: italic;
+  color: #fff1d6;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+.footer {
+  text-align: center;
+  margin-top: 45px;
+  opacity: 0.85;
+  font-style: italic;
+}
 
-    #hiddenMessage {
-      display: none;
-      margin-top: 15px;
-      font-style: italic;
-      color: #fff3f3;
-    }
+/* ❄️ Snowflakes */
+.snowflake {
+  position: fixed;
+  top: -50px;
+  pointer-events: none;
+  z-index: 9999;
+  color: #ffffffcc;
+  font-size: 16px;
+  opacity: 0.9;
+}
 
-    .footer {
-      text-align: center;
-      margin-top: 45px;
-      font-size: 0.9em;
-      opacity: 0.85;
-      color: #f5f5f5;
-    }
-  </style>
+@keyframes fall {
+  0%   { transform: translate(0, 0); opacity: 0.7; }
+  25%  { transform: translate(10px, 25vh); opacity: 1; }
+  50%  { transform: translate(-10px, 50vh); opacity: 0.8; }
+  75%  { transform: translate(15px, 75vh); opacity: 1; }
+  100% { transform: translate(0, 110vh); opacity: 0.9; }
+}
+
+iframe {
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+}
+</style>
 </head>
-
 <body>
-  <div class="snow"></div>
 
-  <div class="container">
-    <h1>🎄 Merry Christmas 🎄</h1>
-    <div class="subtitle">
-      for a friend who makes winter feel warmer
-    </div>
+<div class="container">
+  <h1>🎄 Merry Christmas 🎄</h1>
+  <div class="subtitle">for a friend who makes winter feel kinder</div>
 
-    <div class="card">
-      <h2>📖 If this were a Christmas book</h2>
-      <p>
-        This would be the chapter read under soft lights,
-        where the world slows down, pages turn gently,
-        and friendship feels like home.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>🎧 Songs for cold nights</h2>
-      <p>
-        The kind of music you play when the room is quiet,
-        the weather is cold,
-        and you don’t feel alone.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>❄️ A small winter secret</h2>
-      <button onclick="reveal()">Click me</button>
-      <div id="hiddenMessage">
-        Some people feel like Christmas —
-        calm, kind, and remembered long after winter ends.
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>✍️ A poem for you</h2>
-      <p>
-        (Your poem will live here —
-        like a note tucked inside a favorite book.)
-      </p>
-    </div>
-
-    <div class="footer">
-      Made with friendship ❄️🎄
-    </div>
+  <!-- 1️⃣ Spotify Playlist -->
+  <div class="card">
+    <h2>🎵 Winter Playlist</h2>
+    <p>Press play and let the season begin ❄️</p>
+    <iframe
+      src="https://open.spotify.com/embed/playlist/0SM4JAgoNyiLMA70cLkBhv?utm_source=generator"
+      height="352"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
   </div>
 
-  <script>
-    function reveal() {
-      document.getElementById("hiddenMessage").style.display = "block";
-    }
-  </script>
+  <!-- 2️⃣ Poem Section -->
+  <div class="card">
+    <h2>✍️ A poem for you</h2>
+    <p>
+      You move through the world simply,<br>
+      yet the days change when you are in them.
+      <br><br>
+      You give your best with steady hands,<br>
+      even when your effort is met with words<br>
+      that never should have been spoken,<br>
+      when kindness is mistaken for weakness.
+      <br><br>
+      Still, you remain —<br>
+      thoughtful, understanding,<br>
+      entirely yourself.
+      <br><br>
+      You matter more than you realize,<br>
+      more than careless voices,<br>
+      more than the moments that tried to make you smaller.
+      <br><br>
+      And if the world ever feels too heavy,<br>
+      you never have to carry it alone.
+      <br><br>
+      You can run to me if you need to.<br>
+      I will be there — quietly,<br>
+      without questions or judgment,
+      <br><br>
+      believing in you,<br>
+      choosing you,<br>
+      and staying.
+      <br><br>
+      Merry Christmas.<br>
+      I hope today treats you gently,<br>
+      and gives back even a fraction<br>
+      of the warmth you bring into the world.
+    </p>
+  </div>
+
+  <!-- 3️⃣ Festive Fun Quiz -->
+  <div class="card">
+    <h2>🎄 Festive Quiz</h2>
+    <p>How awesome do you think you are?</p>
+    <div id="quizOptions">
+      <button onclick="showFunMessage()">0</button>
+      <button onclick="showFunMessage()">100</button>
+      <button onclick="showFunMessage()">-∞ (not awesome at all)</button>
+    </div>
+    <div id="quizAnswer"></div>
+  </div>
+
+  <!-- 4️⃣ New Year Countdown -->
+  <div class="card">
+    <h2>🎆 Countdown to New Year 2026</h2>
+    <p id="countdown"></p>
+    <p style="text-align:center; margin-top:10px; font-style:italic; color:#fff1d6;">
+      🎉 Let's celebrate the New Year happily too! 🎉
+    </p>
+  </div>
+
+  <div class="footer">Made with friendship ❄️🎄</div>
+</div>
+
+<script>
+// ❄️ Snowflake effect
+const snowflakeChars = ["❄","❅","❆"];
+
+function createSnowflake() {
+  const flake = document.createElement("div");
+  flake.className = "snowflake";
+  flake.innerText = snowflakeChars[Math.floor(Math.random()*snowflakeChars.length)];
+
+  flake.style.left = Math.random()*100 + "vw";
+  flake.style.fontSize = Math.random()*20 + 14 + "px";
+  flake.style.opacity = Math.random()*0.3 + 0.7;
+
+  const fallDuration = Math.random()*15 + 10; // 10-25s
+  flake.style.animation = `fall ${fallDuration}s linear forwards`;
+
+  document.body.appendChild(flake);
+  setTimeout(() => flake.remove(), fallDuration*1000);
+}
+
+setInterval(() => { for(let i=0;i<3;i++) createSnowflake(); }, 500);
+
+// Festive quiz fun message
+function showFunMessage() {
+  const ansDiv = document.getElementById("quizAnswer");
+  ansDiv.innerText = "🎉 Just kidding — you’re infinitely awesome! ❄️✨";
+}
+
+// New Year Countdown IST
+const countdownTarget = new Date('January 1, 2026 00:00:00 GMT+0530').getTime();
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = countdownTarget - now;
+
+  if(distance < 0){
+    document.getElementById("countdown").innerText = "🎉 Happy New Year 2026! 🎉";
+    clearInterval(countdownInterval);
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerText =
+    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+const countdownInterval = setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
 </body>
 </html>
